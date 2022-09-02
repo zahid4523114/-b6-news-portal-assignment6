@@ -28,8 +28,7 @@ let loadBreakingNews = (id) => {
 
 let showBreakingNews = (newses) => {
   console.log(newses);
-  let itemsNumbers = document.getElementById("show-items-numbers");
-  itemsNumbers.innerText = newses.length + " " + "items are found.";
+
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
