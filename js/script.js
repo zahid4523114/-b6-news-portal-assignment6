@@ -28,6 +28,12 @@ let spinner = (spin) => {
     spinnerContainer.classList.add("d-none");
   }
 };
+//counter
+let counter = (count) => {
+  let itemsNumbers = document.getElementById("show-items-numbers");
+  itemsNumbers.innerText =
+    count.length + " " + "item's are found from this category";
+};
 //Breaking news
 let loadBreakingNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
@@ -37,9 +43,7 @@ let loadBreakingNews = (id) => {
 };
 
 let showBreakingNews = (newses) => {
-  let itemsNumbers = document.getElementById("show-items-numbers");
-  itemsNumbers.innerText =
-    newses.length + " " + "item's are found from this category";
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -115,12 +119,12 @@ let showModal = (modals) => {
 let loadRegularNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showRegularNews(data.data));
   spinner(true);
 };
 
 let showRegularNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -166,18 +170,19 @@ let showRegularNews = (newses) => {
       `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //International news
 let loadInternationalNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showInternationalNews(data.data));
   spinner(true);
 };
 
 let showInternationalNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -224,18 +229,19 @@ let showInternationalNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //Sports news
 let loadSportsNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showSportsNews(data.data));
   spinner(true);
 };
 
 let showSportsNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -282,18 +288,19 @@ let showSportsNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //Entertainment news
 let loadEntertainment = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showEntertainmentNews(data.data));
   spinner(true);
 };
 
 let showEntertainmentNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -340,18 +347,19 @@ let showEntertainmentNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //Culture news
 let loadCulture = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showCultureNews(data.data));
   spinner(true);
 };
 
 let showCultureNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -398,18 +406,19 @@ let showCultureNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //Art news
 let loadArtNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showArtNews(data.data));
   spinner(true);
 };
 
 let showArtNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -456,17 +465,18 @@ let showArtNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 //All news
 let loadAllNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showAllNews(data.data));
   spinner(true);
 };
 
 let showAllNews = (newses) => {
-  console.log(newses);
+  counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -513,6 +523,9 @@ let showAllNews = (newses) => {
         `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
-loadCatagories();
+loadCatagories().catch((error) => {
+  console.log(error);
+});
