@@ -9,14 +9,14 @@ let showCatagories = (catagories) => {
   console.log(catagories);
   let catagoriesContainer = document.getElementById("catagories-container");
   catagoriesContainer.innerHTML = `
-  <button onclick = "loadBreakingNews('${catagories[0].category_id}')"  class="btn btn-primary">${catagories[0].category_name}</button> 
-  <button onclick = "loadRegularNews('${catagories[1].category_id}')" class="btn btn-primary">${catagories[1].category_name}</button>
-  <button onclick = "loadInternationalNews('${catagories[2].category_id}')" class="btn btn-primary">${catagories[2].category_name}</button>
-  <button onclick = "loadSportsNews('${catagories[3].category_id}')" class="btn btn-primary">${catagories[3].category_name}</button>
-  <button onclick = "loadEntertainment('${catagories[4].category_id}')" class="btn btn-primary">${catagories[4].category_name}</button>
-  <button onclick = "loadCulture('${catagories[5].category_id}')" class="btn btn-primary">${catagories[5].category_name}</button>
-  <button onclick = "loadArtNews('${catagories[6].category_id}')" class="btn btn-primary">${catagories[6].category_name}</button>
-  <button onclick = "loadAllNews('${catagories[7].category_id}')" class="btn btn-primary">${catagories[7].category_name}</button>
+  <button onclick = "loadBreakingNews('${catagories[0].category_id}')"  class="btn btn-primary my-2">${catagories[0].category_name}</button> 
+  <button onclick = "loadRegularNews('${catagories[1].category_id}')" class="btn btn-primary my-2">${catagories[1].category_name}</button>
+  <button onclick = "loadInternationalNews('${catagories[2].category_id}')" class="btn btn-primary my-2">${catagories[2].category_name}</button>
+  <button onclick = "loadSportsNews('${catagories[3].category_id}')" class="btn btn-primary my-2">${catagories[3].category_name}</button>
+  <button onclick = "loadEntertainment('${catagories[4].category_id}')" class="btn btn-primary my-2">${catagories[4].category_name}</button>
+  <button onclick = "loadCulture('${catagories[5].category_id}')" class="btn btn-primary my-2">${catagories[5].category_name}</button>
+  <button onclick = "loadArtNews('${catagories[6].category_id}')" class="btn btn-primary my-2">${catagories[6].category_name}</button>
+  <button onclick = "loadAllNews('${catagories[7].category_id}')" class="btn btn-primary my-2">${catagories[7].category_name}</button>
   `;
 };
 
@@ -37,12 +37,14 @@ let showBreakingNews = (newses) => {
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
+    console.log(news);
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
-    createCard.classList.add("p-3");
+    createCard.classList.add("p-2");
     createCard.classList.add("rounded");
     createCard.classList.add("shadow-lg");
     createCard.classList.add("container");
+
     createCard.innerHTML = `
         <div class="row g-0">
           <div class="col-md-4">
@@ -60,17 +62,17 @@ let showBreakingNews = (newses) => {
                     : news.details
                 }
               </p>
-              <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+              <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
               <div class = "d-flex justify-content-between align-items-center ">
-              <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
+              <img class = "me-3 d-block" style = "width:40px;border-radius:50%" src = "${
                 news.author.img
               }">
               <p>${news.author.name}</p>
               </div>
-              <h5>View: <span class = "fw-bold">${news.total_view}</span> </h5>
+              <p>View: <span class = "fw-bold">${news.total_view}</span> </p>
               <button onclick ="loadModal('${
                 news._id
-              }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+              }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Detail</button>
               </div>
             </div>
           </div>
@@ -93,11 +95,11 @@ let showModal = (modals) => {
   let modalContainer = document.getElementById("modal-body-container");
   modalContainer.innerHTML = `
   <img class = "img-fluid w-100 rounded" src = "${modals.thumbnail_url}">
-  <h5 class = "my-3 "><b>title:</b> ${modals.title}</h5>
+  <h5 class = "my-2 "><b>title:</b> ${modals.title}</h5>
   <br>
   <b>Author</b>
   <img class = "img-fluid rounded" src = "${modals.author.img}">
-  <p class = "my-3"><b>Name:</b> ${modals.author.name}</p>
+  <p class = "my-2"><b>Name:</b> ${modals.author.name}</p>
   <p><b>Published date:</b> ${modals.author.published_date}</p>
   `;
 };
@@ -114,6 +116,7 @@ let showRegularNews = (newses) => {
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
+    console.log(news);
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
     createCard.classList.add("p-3");
@@ -147,9 +150,7 @@ let showRegularNews = (newses) => {
                 <h5>View: <span class = "fw-bold">${
                   news.total_view
                 }</span> </h5>
-                <button onclick ="loadModal('${
-                  news._id
-                }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                <button class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                 </div>
               </div>
             </div>
