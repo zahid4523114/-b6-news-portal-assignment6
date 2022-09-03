@@ -6,7 +6,7 @@ let loadCatagories = async () => {
 };
 
 let showCatagories = (catagories) => {
-  console.log(catagories);
+  // console.log(catagories);
   let catagoriesContainer = document.getElementById("catagories-container");
   catagoriesContainer.innerHTML = `
   <button onclick = "loadBreakingNews('${catagories[0].category_id}')"  class="btn btn-primary my-2">${catagories[0].category_name}</button> 
