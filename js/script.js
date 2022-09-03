@@ -39,12 +39,15 @@ let counter = (count) => {
 let loadBreakingNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showBreakingNews(data.data));
+    .then((data) => showBreakingNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
 let showBreakingNews = (newses) => {
-  console.log(newses);
+  // console.log(newses);
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
@@ -53,7 +56,7 @@ let showBreakingNews = (newses) => {
     return b.total_view - a.total_view;
   });
   newses.forEach((news) => {
-    console.log(news);
+    // console.log(news);
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
     createCard.classList.add("p-2");
@@ -105,7 +108,10 @@ let loadModal = (userId) => {
   let url = `https://openapi.programming-hero.com/api/news/${userId}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => showModal(data.data[0]));
+    .then((data) => showModal(data.data[0]))
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 let showModal = (modals) => {
@@ -125,13 +131,16 @@ let showModal = (modals) => {
 let loadRegularNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showRegularNews(data.data));
+    .then((data) => showRegularNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
 let showRegularNews = (newses) => {
   counter(newses);
-  console.log(newses);
+  // console.log(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   //sort
@@ -139,7 +148,7 @@ let showRegularNews = (newses) => {
     return b.total_view - a.total_view;
   });
   newses.forEach((news) => {
-    console.log(news);
+    // console.log(news);
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
     createCard.classList.add("p-3");
@@ -194,7 +203,10 @@ let showRegularNews = (newses) => {
 let loadInternationalNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showInternationalNews(data.data));
+    .then((data) => showInternationalNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
@@ -257,7 +269,10 @@ let showInternationalNews = (newses) => {
 let loadSportsNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showSportsNews(data.data));
+    .then((data) => showSportsNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
@@ -320,7 +335,10 @@ let showSportsNews = (newses) => {
 let loadEntertainment = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showEntertainmentNews(data.data));
+    .then((data) => showEntertainmentNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
@@ -383,7 +401,10 @@ let showEntertainmentNews = (newses) => {
 let loadCulture = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showCultureNews(data.data));
+    .then((data) => showCultureNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
@@ -446,7 +467,10 @@ let showCultureNews = (newses) => {
 let loadArtNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showArtNews(data.data));
+    .then((data) => showArtNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
@@ -512,7 +536,10 @@ let showArtNews = (newses) => {
 let loadAllNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => showAllNews(data.data));
+    .then((data) => showAllNews(data.data))
+    .catch((error) => {
+      console.log(error);
+    });
   spinner(true);
 };
 
