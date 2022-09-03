@@ -44,9 +44,14 @@ let loadBreakingNews = (id) => {
 };
 
 let showBreakingNews = (newses) => {
+  console.log(newses);
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     console.log(news);
     let createCard = document.createElement("div");
@@ -129,6 +134,10 @@ let showRegularNews = (newses) => {
   console.log(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     console.log(news);
     let createCard = document.createElement("div");
@@ -193,6 +202,10 @@ let showInternationalNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
@@ -252,6 +265,10 @@ let showSportsNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
@@ -311,6 +328,10 @@ let showEntertainmentNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
@@ -370,6 +391,10 @@ let showCultureNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
@@ -429,6 +454,10 @@ let showArtNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
@@ -491,6 +520,10 @@ let showAllNews = (newses) => {
   counter(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
+  //sort
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   newses.forEach((news) => {
     let createCard = document.createElement("div");
     createCard.classList.add("mb-5");
