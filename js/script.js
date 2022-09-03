@@ -19,21 +19,27 @@ let showCatagories = (catagories) => {
   <button onclick = "loadAllNews('${catagories[7].category_id}')" class="btn btn-primary my-2">${catagories[7].category_name}</button>
   `;
 };
-
+//common function
+let spinner = (spin) => {
+  let spinnerContainer = document.getElementById("spinner");
+  if (spin) {
+    spinnerContainer.classList.remove("d-none");
+  } else {
+    spinnerContainer.classList.add("d-none");
+  }
+};
 //Breaking news
 let loadBreakingNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showBreakingNews = (newses) => {
-  console.log(newses);
-
   let itemsNumbers = document.getElementById("show-items-numbers");
   itemsNumbers.innerText =
     newses.length + " " + "item's are found from this category";
-
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -72,7 +78,7 @@ let showBreakingNews = (newses) => {
               <p>View: <span class = "fw-bold">${news.total_view}</span> </p>
               <button onclick ="loadModal('${
                 news._id
-              }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Detail</button>
+              }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
               </div>
             </div>
           </div>
@@ -80,6 +86,7 @@ let showBreakingNews = (newses) => {
     `;
     cardContainer.appendChild(createCard);
   });
+  spinner(false);
 };
 
 //load modal
@@ -109,6 +116,7 @@ let loadRegularNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showRegularNews = (newses) => {
@@ -165,6 +173,7 @@ let loadInternationalNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showInternationalNews = (newses) => {
@@ -222,6 +231,7 @@ let loadSportsNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showSportsNews = (newses) => {
@@ -279,6 +289,7 @@ let loadEntertainment = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showEntertainmentNews = (newses) => {
@@ -336,6 +347,7 @@ let loadCulture = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showCultureNews = (newses) => {
@@ -393,6 +405,7 @@ let loadArtNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showArtNews = (newses) => {
@@ -449,6 +462,7 @@ let loadAllNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => showBreakingNews(data.data));
+  spinner(true);
 };
 
 let showAllNews = (newses) => {
