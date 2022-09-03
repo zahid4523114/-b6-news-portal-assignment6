@@ -83,7 +83,7 @@ let showBreakingNews = (newses) => {
               </p>
               <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
               <div class = "d-flex justify-content-between align-items-center ">
-              <img class = "me-3 d-block" style = "width:40px;border-radius:50%" src = "${
+              <img class = "me-3 d-block" style = "width:80px;border-radius:50%" src = "${
                 news.author.img
               }">
               <p>${news.author.name}</p>
@@ -92,6 +92,7 @@ let showBreakingNews = (newses) => {
               <button onclick ="loadModal('${
                 news._id
               }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+              </div>
               </div>
             </div>
           </div>
@@ -172,7 +173,7 @@ let showRegularNews = (newses) => {
                     : news.details
                 }
                 </p>
-                <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                 <div class = "d-flex justify-content-between align-items-center ">
                 <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                   news.author.img
@@ -189,6 +190,7 @@ let showRegularNews = (newses) => {
                     : news.total_view
                 }</span> </h5>
                 <button class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                </div>
                 </div>
               </div>
             </div>
@@ -242,7 +244,7 @@ let showInternationalNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -255,6 +257,7 @@ let showInternationalNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -308,7 +311,7 @@ let showSportsNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -321,6 +324,7 @@ let showSportsNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -374,7 +378,7 @@ let showEntertainmentNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -387,6 +391,7 @@ let showEntertainmentNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -440,7 +445,7 @@ let showCultureNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -453,6 +458,7 @@ let showCultureNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -506,7 +512,7 @@ let showArtNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -523,6 +529,7 @@ let showArtNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -575,7 +582,7 @@ let showAllNews = (newses) => {
                       : news.details
                   }
                   </p>
-                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center flex-lg-row flex-column ">
                   <div class = "d-flex justify-content-between align-items-center ">
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
@@ -588,6 +595,7 @@ let showAllNews = (newses) => {
                   <button onclick ="loadModal('${
                     news._id
                   }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
                   </div>
                 </div>
               </div>
