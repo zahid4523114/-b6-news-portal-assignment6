@@ -2,7 +2,7 @@ let loadCatagories = async () => {
   let url = `https://openapi.programming-hero.com/api/news/categories`;
   let res = await fetch(url);
   let data = await res.json();
-  showCatagories(data.data.news_category);
+  return showCatagories(data.data.news_category);
 };
 
 let showCatagories = (catagories) => {
@@ -16,6 +16,7 @@ let showCatagories = (catagories) => {
   <button onclick = "loadEntertainment('${catagories[4].category_id}')" class="btn btn-primary">${catagories[4].category_name}</button>
   <button onclick = "loadCulture('${catagories[5].category_id}')" class="btn btn-primary">${catagories[5].category_name}</button>
   <button onclick = "loadArtNews('${catagories[6].category_id}')" class="btn btn-primary">${catagories[6].category_name}</button>
+  <button onclick = "loadAllNews('${catagories[7].category_id}')" class="btn btn-primary">${catagories[7].category_name}</button>
   `;
 };
 
@@ -28,8 +29,11 @@ let loadBreakingNews = (id) => {
 
 let showBreakingNews = (newses) => {
   console.log(newses);
+
   let itemsNumbers = document.getElementById("show-items-numbers");
-  itemsNumbers.innerText = newses.length + " " + "items are found.";
+  itemsNumbers.innerText =
+    newses.length + " " + "item's are found from this category";
+
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -50,7 +54,11 @@ let showBreakingNews = (newses) => {
             <div class="card-body">
               <h2 class="card-title mb-3">${news.title}</h2>
               <p class="card-text">
-                ${news.details.slice(0, 300)}
+                ${
+                  news.details.length > 300
+                    ? news.details.slice(0, 300) + "...."
+                    : news.details
+                }
               </p>
               <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
               <div class = "d-flex justify-content-between align-items-center ">
@@ -60,7 +68,9 @@ let showBreakingNews = (newses) => {
               <p>${news.author.name}</p>
               </div>
               <h5>View: <span class = "fw-bold">${news.total_view}</span> </h5>
-              <button class = "btn btn-primary">Show Detail</button>
+              <button onclick ="loadModal('${
+                news._id
+              }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
               </div>
             </div>
           </div>
@@ -70,8 +80,29 @@ let showBreakingNews = (newses) => {
   });
 };
 
-//Regular news
+//load modal
 
+let loadModal = (userId) => {
+  let url = `https://openapi.programming-hero.com/api/news/${userId}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => showModal(data.data[0]));
+};
+
+let showModal = (modals) => {
+  let modalContainer = document.getElementById("modal-body-container");
+  modalContainer.innerHTML = `
+  <img class = "img-fluid w-100 rounded" src = "${modals.thumbnail_url}">
+  <h5 class = "my-3 "><b>title:</b> ${modals.title}</h5>
+  <br>
+  <b>Author</b>
+  <img class = "img-fluid rounded" src = "${modals.author.img}">
+  <p class = "my-3"><b>Name:</b> ${modals.author.name}</p>
+  <p><b>Published date:</b> ${modals.author.published_date}</p>
+  `;
+};
+
+//Regular news
 let loadRegularNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
@@ -100,7 +131,11 @@ let showRegularNews = (newses) => {
               <div class="card-body">
                 <h2 class="card-title mb-3">${news.title}</h2>
                 <p class="card-text">
-                  ${news.details.slice(0, 300)}
+                ${
+                  news.details.length > 300
+                    ? news.details.slice(0, 300) + "...."
+                    : news.details
+                }
                 </p>
                 <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                 <div class = "d-flex justify-content-between align-items-center ">
@@ -112,7 +147,9 @@ let showRegularNews = (newses) => {
                 <h5>View: <span class = "fw-bold">${
                   news.total_view
                 }</span> </h5>
-                <button class = "btn btn-primary">Show Detail</button>
+                <button onclick ="loadModal('${
+                  news._id
+                }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                 </div>
               </div>
             </div>
@@ -151,7 +188,11 @@ let showInternationalNews = (newses) => {
                 <div class="card-body">
                   <h2 class="card-title mb-3">${news.title}</h2>
                   <p class="card-text">
-                    ${news.details.slice(0, 300)}
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
                   </p>
                   <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                   <div class = "d-flex justify-content-between align-items-center ">
@@ -163,7 +204,9 @@ let showInternationalNews = (newses) => {
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
                   }</span> </h5>
-                  <button class = "btn btn-primary">Show Detail</button>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                   </div>
                 </div>
               </div>
@@ -202,7 +245,11 @@ let showSportsNews = (newses) => {
                 <div class="card-body">
                   <h2 class="card-title mb-3">${news.title}</h2>
                   <p class="card-text">
-                    ${news.details.slice(0, 300)}
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
                   </p>
                   <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                   <div class = "d-flex justify-content-between align-items-center ">
@@ -214,7 +261,9 @@ let showSportsNews = (newses) => {
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
                   }</span> </h5>
-                  <button class = "btn btn-primary">Show Detail</button>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                   </div>
                 </div>
               </div>
@@ -253,7 +302,11 @@ let showEntertainmentNews = (newses) => {
                 <div class="card-body">
                   <h2 class="card-title mb-3">${news.title}</h2>
                   <p class="card-text">
-                    ${news.details.slice(0, 300)}
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
                   </p>
                   <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                   <div class = "d-flex justify-content-between align-items-center ">
@@ -265,7 +318,9 @@ let showEntertainmentNews = (newses) => {
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
                   }</span> </h5>
-                  <button class = "btn btn-primary">Show Detail</button>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                   </div>
                 </div>
               </div>
@@ -304,7 +359,11 @@ let showCultureNews = (newses) => {
                 <div class="card-body">
                   <h2 class="card-title mb-3">${news.title}</h2>
                   <p class="card-text">
-                    ${news.details.slice(0, 300)}
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
                   </p>
                   <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                   <div class = "d-flex justify-content-between align-items-center ">
@@ -316,7 +375,9 @@ let showCultureNews = (newses) => {
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
                   }</span> </h5>
-                  <button class = "btn btn-primary">Show Detail</button>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                   </div>
                 </div>
               </div>
@@ -355,7 +416,11 @@ let showArtNews = (newses) => {
                 <div class="card-body">
                   <h2 class="card-title mb-3">${news.title}</h2>
                   <p class="card-text">
-                    ${news.details.slice(0, 300)}
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
                   </p>
                   <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
                   <div class = "d-flex justify-content-between align-items-center ">
@@ -367,7 +432,65 @@ let showArtNews = (newses) => {
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
                   }</span> </h5>
-                  <button class = "btn btn-primary">Show Detail</button>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `;
+    cardContainer.appendChild(createCard);
+  });
+};
+//All news
+let loadAllNews = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => showBreakingNews(data.data));
+};
+
+let showAllNews = (newses) => {
+  console.log(newses);
+  let cardContainer = document.getElementById("news-card-container");
+  cardContainer.innerHTML = "";
+  newses.forEach((news) => {
+    let createCard = document.createElement("div");
+    createCard.classList.add("mb-5");
+    createCard.classList.add("p-3");
+    createCard.classList.add("rounded");
+    createCard.classList.add("shadow-lg");
+    createCard.classList.add("container");
+    createCard.innerHTML = `
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${
+                  news.thumbnail_url
+                }" class="img-fluid rounded-start" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h2 class="card-title mb-3">${news.title}</h2>
+                  <p class="card-text">
+                  ${
+                    news.details.length > 300
+                      ? news.details.slice(0, 300) + "...."
+                      : news.details
+                  }
+                  </p>
+                  <div class = " mt-4 container-fluid d-flex justify-content-between align-items-center">
+                  <div class = "d-flex justify-content-between align-items-center ">
+                  <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
+                    news.author.img
+                  }">
+                  <p>${news.author.name}</p>
+                  </div>
+                  <h5>View: <span class = "fw-bold">${
+                    news.total_view
+                  }</span> </h5>
+                  <button onclick ="loadModal('${
+                    news._id
+                  }')" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                   </div>
                 </div>
               </div>
