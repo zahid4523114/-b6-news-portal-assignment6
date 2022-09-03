@@ -19,7 +19,7 @@ let showCatagories = (catagories) => {
   <button onclick = "loadAllNews('${catagories[7].category_id}')" class="btn btn-primary my-2">${catagories[7].category_name}</button>
   `;
 };
-//common function
+// spinner function
 let spinner = (spin) => {
   let spinnerContainer = document.getElementById("spinner");
   if (spin) {
@@ -28,12 +28,13 @@ let spinner = (spin) => {
     spinnerContainer.classList.add("d-none");
   }
 };
-//counter
+//counter function
 let counter = (count) => {
   let itemsNumbers = document.getElementById("show-items-numbers");
   itemsNumbers.innerText =
     count.length + " " + "item's are found from this category";
 };
+
 //Breaking news
 let loadBreakingNews = (id) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
@@ -125,6 +126,7 @@ let loadRegularNews = (id) => {
 
 let showRegularNews = (newses) => {
   counter(newses);
+  console.log(newses);
   let cardContainer = document.getElementById("news-card-container");
   cardContainer.innerHTML = "";
   newses.forEach((news) => {
@@ -157,10 +159,16 @@ let showRegularNews = (newses) => {
                 <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                   news.author.img
                 }">
-                <p>${news.author.name}</p>
+                <p>${
+                  news.author.name === null
+                    ? "No data available"
+                    : news.author.name
+                }</p>
                 </div>
                 <h5>View: <span class = "fw-bold">${
-                  news.total_view
+                  news.total_view === null
+                    ? "No data available"
+                    : news.total_view
                 }</span> </h5>
                 <button class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Detail</button>
                 </div>
@@ -450,7 +458,11 @@ let showArtNews = (newses) => {
                   <img class = "me-3" style = "width:80px;border-radius:50%" src = "${
                     news.author.img
                   }">
-                  <p>${news.author.name}</p>
+                  <p>${
+                    news.author.name === ""
+                      ? "No data available"
+                      : news.author.name
+                  }</p>
                   </div>
                   <h5>View: <span class = "fw-bold">${
                     news.total_view
@@ -525,7 +537,7 @@ let showAllNews = (newses) => {
   });
   spinner(false);
 };
-
+//catching error
 loadCatagories().catch((error) => {
   console.log(error);
 });
